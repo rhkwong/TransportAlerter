@@ -3,13 +3,12 @@ import io.dropwizard.jdbi3.JdbiFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.jdbi.v3.core.Jdbi;
-import org.quartz.Job;
 import resources.StationResource;
 import resources.SubscriptionResource;
 import services.SubscriptionService;
 import stores.SubscriptionStore;
 
-public class MainApp extends Application<MainAppConfiguration> implements JobConfiguration {
+public class MainApp extends Application<MainAppConfiguration> {
     public static void main(String[] args) throws Exception {
         new MainApp().run(args);
     }
@@ -21,7 +20,7 @@ public class MainApp extends Application<MainAppConfiguration> implements JobCon
 
     @Override
     public void initialize(Bootstrap<MainAppConfiguration> bootstrap) {
-        Job subscriptionJob = new
+
         // nothing to do yet
     }
 
