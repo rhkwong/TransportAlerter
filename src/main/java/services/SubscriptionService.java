@@ -19,8 +19,8 @@ public class SubscriptionService {
         return result;
     }
 
-    public List<Subscription> getSubscriptionsInTimeRange(String startTime, String endTime) {
-        List<Subscription> result = subscriptionStore.getSubscriptionsBetweenTimes(Long.parseLong(startTime), Long.parseLong(endTime));
+    public List<Subscription> getSubscriptionsInTimeRange(String startTs, String endTS) {
+        List<Subscription> result = subscriptionStore.getSubscriptionsBetweenTimes(Long.parseLong(startTs), Long.parseLong(endTS));
 
         return result;
     }

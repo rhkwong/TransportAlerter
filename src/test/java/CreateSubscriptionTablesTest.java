@@ -136,13 +136,13 @@ public class CreateSubscriptionTablesTest {
         try {
             stmt = connection.prepareStatement("INSERT INTO subscriptions (id, stationId, userId, direction, startTime, endTime) VALUES (?, ?, ?, ?, ?, ?);");
 
-            for (int i = 0 ;i < 1000 ;i++) {
+            for (int i = 0 ;i < 10 ;i++) {
                 stmt.setString(1, UUID.randomUUID().toString());
                 stmt.setString(2, "1");
                 stmt.setString(3, "123");
                 stmt.setString(4, "outbound");
-                stmt.setInt(5, (int)(i * 60000 + System.currentTimeMillis()) / 1000);
-                stmt.setInt(6, (int)(i * 60000 + System.currentTimeMillis() + 1000000) / 1000);
+                stmt.setInt(5, (int)((System.currentTimeMillis()) / 1000) + 60 * i);
+                stmt.setInt(6, (int)((System.currentTimeMillis()) / 1000) + 70 * i);
                 stmt.addBatch();
             }
             stmt.executeBatch();

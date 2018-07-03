@@ -1,14 +1,30 @@
 package jobs;
 
-import org.quartz.Job;
+import de.spinscale.dropwizard.jobs.Job;
+import de.spinscale.dropwizard.jobs.annotations.Every;
+import models.Subscription;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import services.SubscriptionService;
 
+import java.util.List;
 
+@Every("5s")
+public class SubscriptionsJob extends Job {
+    private SubscriptionService subscriptionsService;
 
-public class SubscriptionsJob implements Job {
+    public void setSubscriptionsService(SubscriptionService service) {
+        this.subscriptionsService = service;
+    }
+
     @Override
-    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+    public void doJob(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        if (subscriptionsService == null) {
+            return;
+        }
 
+        System.out.println("running job");
+        List<Subscription> subscriptionList = subscriptionsService.getSubscriptionsInTimeRange(String.valueOf(System.currentTimeMillis()/1000), String.valueOf(System.currentTimeMillis()/1000 + 1000));
+        System.out.println(subscriptionList.size());
     }
 }

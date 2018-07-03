@@ -1,4 +1,5 @@
 
+import de.spinscale.dropwizard.jobs.JobConfiguration;
 import io.dropwizard.Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.db.DataSourceFactory;
@@ -7,7 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-public class MainAppConfiguration extends Configuration {
+public class MainAppConfiguration extends Configuration implements JobConfiguration {
     @NotEmpty
     private String template;
 
